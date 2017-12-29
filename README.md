@@ -1,1 +1,1 @@
-# Inserting-element-into-dynamic-array-using-C-language
+No copyrights for this code
