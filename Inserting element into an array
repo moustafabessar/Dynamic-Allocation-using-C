@@ -37,14 +37,14 @@ void insertElementInArray(int element, int location, int *originalElements,int e
 
 int main()
 {
-   char *cont;
+   char cont ='y';
 
     int numOfElements, number,location, i;
     int *elementsOfArray;  //defining pointer to array
 
     printf("\t\t * Welcome, this console application created for inserting element into array using dynamic allocation");
     
-    while(cont)
+    while(cont == 'y')
     {
         printf("\n\tEnter size of array: ");
 
@@ -81,9 +81,9 @@ int main()
         printf("\nDo you want to begin another process?\n ");
         scanf ("%s",&cont);
 
-        if(cont == "no")
+        if(cont == 'n')
           break;
-        else if("yes")
+        else if('y')
           continue;
           else
           {
