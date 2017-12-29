@@ -1,0 +1,96 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void insertElementInArray(int element, int location, int *originalElements,int elementsNumber) 
+{
+      int i , seconfHalf =0;
+      int * arrayElements;
+      arrayElements = calloc(elementsNumber+1,sizeof (int));
+      if(arrayElements == NULL)
+       {
+           printf ("Error allocating requested memory");
+           return 1;
+       }
+      for(i = 0; i <= elementsNumber; i++)
+      {
+          if(i == location-1)
+          {
+              arrayElements[location-1] = element;  //adding the new element
+              seconfHalf =1;
+              continue;
+          }
+          if(seconfHalf ==1) 
+          {
+              arrayElements[i] = originalElements[i-1];  // adding second part after adding new element
+              continue;
+          }
+         arrayElements[i] = originalElements[i];    // adding first part beforing adding new element
+      }
+
+      printf("\nYour new array is: ");
+      for(i = 0; i <= elementsNumber; ++i)  // printing the modified array
+      {
+          printf(" %d",arrayElements[i]);
+      }
+      free(arrayElements);
+}
+
+int main()
+{
+   char *cont;
+
+    int numOfElements, number,location, i;
+    int *elementsOfArray;  //defining pointer to array
+
+    printf("\t\t * Welcome, this console application created for inserting element into array using dynamic allocation");
+    
+    while(cont)
+    {
+        printf("\n\tEnter size of array: ");
+
+        scanf("%d", &numOfElements);
+        elementsOfArray = calloc(numOfElements,sizeof(int));  // create array original
+
+        printf("\n\tEnter your elements: ");
+        for(i = 0; i<numOfElements;++i)
+        {
+            scanf("%d",&elementsOfArray[i]);
+        }
+        if(elementsOfArray == NULL)
+           {
+               printf ("Error allocating requested memory");
+               return 1;
+           }
+          printf("Enter The number you want to insert: ");
+
+          scanf("%d",&number);
+
+          printf("Enter location of the number: ");
+
+          scanf("%d",&location);
+
+        printf("\n\t\t\t********************");
+        printf("\nYour original array is: ");
+         for(i = 0; i<numOfElements;++i)  // printing original array
+        {
+            printf(" %d",elementsOfArray[i]);
+        }
+      insertElementInArray(number, location, elementsOfArray, numOfElements); // function to add new element into original array
+        free(elementsOfArray);
+
+        printf("\nDo you want to begin another process?\n ");
+        scanf ("%s",&cont);
+
+        if(cont == "no")
+          break;
+        else if("yes")
+          continue;
+          else
+          {
+            printf("\nUndefined answer?\n");
+            return 0;
+          }
+    } // end of while
+   
+    return 0;
+}
